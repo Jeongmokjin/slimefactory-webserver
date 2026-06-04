@@ -444,6 +444,157 @@ a { text-decoration: none; color: inherit; }
 }
 .error-hero p { color: var(--muted-soft); margin: 0 0 28px; }
 
+/* ===================== Page head (cart/order/etc) ===================== */
+.page-head { margin: 32px 0 8px; }
+.page-head h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 34px;
+  color: var(--ink);
+  margin: 0 0 4px;
+}
+.page-head .sub { color: var(--muted); font-size: 14px; }
+
+/* ===================== Buttons (extra) ===================== */
+.btn-danger {
+  background: var(--error);
+  color: #fff;
+  box-shadow: none;
+}
+.btn-danger:hover { background: #e23a59; }
+.btn-sm { min-height: 38px; padding: 8px 18px; font-size: 13px; }
+
+/* ===================== Cart / Order table ===================== */
+.cart-toolbar {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 24px 0 8px;
+}
+.cart-table, .order-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 12px 0 16px;
+}
+.cart-table th, .order-table th {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--muted);
+  text-align: left;
+  padding: 12px 8px;
+  border-bottom: 2px solid var(--hairline-strong);
+}
+.cart-table td, .order-table td {
+  padding: 14px 8px;
+  border-bottom: 1px solid var(--hairline);
+  font-size: 15px;
+  color: var(--body-strong);
+  vertical-align: middle;
+}
+.cart-table .num, .order-table .num { text-align: right; }
+.cart-table .center, .order-table .center { text-align: center; }
+.cart-item { display: flex; align-items: center; gap: 12px; }
+.cart-thumb {
+  width: 48px; height: 48px;
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px;
+  flex: 0 0 auto;
+}
+.cart-item .nm { font-family: var(--font-display); font-weight: 700; color: var(--ink); }
+.cart-item .cat { font-size: 12px; color: var(--muted); }
+.cart-table tfoot td, .order-table tfoot td {
+  border-bottom: none;
+  border-top: 2px solid var(--hairline-strong);
+  font-family: var(--font-display);
+  font-weight: 800;
+}
+.cart-total-price { color: var(--secondary); font-size: 20px; }
+.link-remove { color: var(--error); font-weight: 700; font-size: 13px; }
+.link-remove:hover { text-decoration: underline; }
+
+.empty-cart {
+  text-align: center;
+  background: var(--surface-soft);
+  border-radius: var(--r-lg);
+  padding: 64px 24px;
+  margin: 24px 0;
+}
+.empty-cart .big { font-size: 72px; line-height: 1; margin-bottom: 12px; }
+.empty-cart p { color: var(--muted); margin: 0 0 24px; }
+
+/* ===================== Shipping form ===================== */
+.shipping-form { max-width: 640px; margin: 24px 0 40px; }
+.form-row { margin-bottom: 18px; }
+.form-row label {
+  display: block;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--ink);
+  margin-bottom: 6px;
+}
+.form-input {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 15px;
+  color: var(--body-strong);
+  background: var(--surface-card);
+  border: 2px solid var(--hairline-strong);
+  border-radius: var(--r-md);
+  padding: 12px 14px;
+  transition: border-color .15s;
+}
+.form-input:focus { outline: none; border-color: var(--secondary); }
+.form-hint { font-size: 12px; color: var(--muted-soft); margin-left: 6px; }
+.form-actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+
+/* ===================== Receipt / Order confirmation ===================== */
+.receipt {
+  background: var(--surface-strong);
+  border-radius: var(--r-lg);
+  padding: 32px;
+  margin: 24px 0 40px;
+}
+.receipt-head {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-bottom: 20px;
+  margin-bottom: 8px;
+  border-bottom: 1px dashed var(--hairline-strong);
+}
+.receipt-head h4 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 15px;
+  color: var(--ink);
+  margin: 0 0 6px;
+}
+.receipt-head p { margin: 2px 0; font-size: 14px; color: var(--body); }
+
+/* ===================== Order result (thank/cancel) ===================== */
+.result-hero {
+  text-align: center;
+  border-radius: var(--r-xl);
+  padding: 64px 32px;
+  margin: 40px 0;
+}
+.result-hero.ok { background: var(--surface-mint-tint); }
+.result-hero.cancel { background: var(--surface-strong); }
+.result-hero .big { font-size: 80px; line-height: 1; margin-bottom: 12px; }
+.result-hero h1 {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 30px;
+  color: var(--ink);
+  margin: 0 0 12px;
+}
+.result-hero p { color: var(--body); margin: 4px 0; }
+.result-hero .order-no { font-family: var(--font-display); font-weight: 700; color: var(--secondary); }
+
 /* ===================== Responsive ===================== */
 @media (max-width: 1024px) {
   .product-grid { grid-template-columns: repeat(2, 1fr); }

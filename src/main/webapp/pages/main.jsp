@@ -3,7 +3,7 @@
 <%@ page import="dto.Product" %>
 <%@ page import="dao.ProductRepository" %>
 <%
-	String pageTitle = "슬라임 팩토리 - 전체상품";
+	request.setAttribute("pageTitle", "슬라임 팩토리 - 전체상품");
 %>
 <%@ include file="header.jsp" %>
 <%
@@ -70,7 +70,7 @@
 				</a>
 				<p class="card-price"><%= String.format("%,d", product.getUnitPrice()) %>원</p>
 				<div class="card-actions">
-					<a href="<%= ctx %>/pages/product.jsp?id=<%= product.getProductId() %>"
+					<a href="<%= ctx %>/pages/addCart.jsp?id=<%= product.getProductId() %>"
 					   class="btn btn-primary btn-block">담기</a>
 				</div>
 			</article>

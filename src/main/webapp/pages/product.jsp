@@ -10,7 +10,7 @@
 	if (product == null) {
 		throw new Exception("해당 상품을 찾을 수 없습니다. (id=" + id + ")");
 	}
-	String pageTitle = product.getName() + " - 슬라임 팩토리";
+	request.setAttribute("pageTitle", product.getName() + " - 슬라임 팩토리");
 %>
 <%@ include file="header.jsp" %>
 
@@ -73,7 +73,7 @@
 			</table>
 
 			<div class="detail-actions">
-				<a href="#" class="btn btn-primary">담기</a>
+				<a href="<%= ctx %>/pages/addCart.jsp?id=<%= product.getProductId() %>" class="btn btn-primary">장바구니 담기</a>
 				<a href="#" class="btn btn-secondary">찜하기</a>
 				<a href="<%= ctx %>/pages/main.jsp" class="btn btn-secondary">목록으로</a>
 			</div>

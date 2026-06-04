@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"
 	isErrorPage="true"%>
 <%
-	String pageTitle = "상품을 찾을 수 없어요 - 슬라임 팩토리";
+	request.setAttribute("pageTitle", "상품을 찾을 수 없어요 - 슬라임 팩토리");
 %>
 <%@ include file="header.jsp" %>
 

@@ -1,8 +1,15 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList" %>
+<%@ page import="dto.Product" %>
 <%
-	// 페이지에서 include 하기 전에 String pageTitle 변수를 선언하면 제목으로 사용됩니다.
-	String _title = (pageTitle == null) ? "슬라임 팩토리" : pageTitle;
+	// 페이지에서 include 하기 전에 request 속성 "pageTitle"을 지정하면 제목으로 사용됩니다.
+	Object _pageTitle = request.getAttribute("pageTitle");
+	String _title = (_pageTitle == null) ? "슬라임 팩토리" : _pageTitle.toString();
 	String ctx = request.getContextPath();
+
+	// 세션 장바구니에 담긴 상품 종류 수(장바구니 배지 표시용)
+	ArrayList<Product> _cartList = (ArrayList<Product>) session.getAttribute("cartlist");
+	int _cartCount = (_cartList == null) ? 0 : _cartList.size();
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -30,7 +37,7 @@
 			<li><a href="<%= ctx %>/pages/main.jsp?cat=이벤트">이벤트</a></li>
 		</ul>
 		<div class="nav-right">
-			<a href="#" class="icon-btn" title="장바구니">🛒<span class="cart-count">0</span></a>
+			<a href="<%= ctx %>/pages/cart.jsp" class="icon-btn" title="장바구니">🛒<span class="cart-count"><%= _cartCount %></span></a>
 			<a href="#" class="btn btn-secondary" style="min-height:40px;padding:8px 18px;">로그인</a>
 		</div>
 	</div>
