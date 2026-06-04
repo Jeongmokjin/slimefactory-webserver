@@ -10,6 +10,10 @@
 	// 세션 장바구니에 담긴 상품 종류 수(장바구니 배지 표시용)
 	ArrayList<Product> _cartList = (ArrayList<Product>) session.getAttribute("cartlist");
 	int _cartCount = (_cartList == null) ? 0 : _cartList.size();
+
+	// 로그인 상태 / 관리자 권한 여부
+	String _loginId = (String) session.getAttribute("loginId");
+	boolean _isAdmin = "ADMIN".equals(session.getAttribute("role"));
 %>
 <!DOCTYPE html>
 <html lang="ko">
@@ -38,7 +42,23 @@
 		</ul>
 		<div class="nav-right">
 			<a href="<%= ctx %>/pages/cart.jsp" class="icon-btn" title="장바구니">🛒<span class="cart-count"><%= _cartCount %></span></a>
-			<a href="#" class="btn btn-secondary" style="min-height:40px;padding:8px 18px;">로그인</a>
+		<%
+			if (_loginId != null) {
+				if (_isAdmin) {
+		%>
+			<a href="<%= ctx %>/pages/addProduct.jsp" class="btn btn-secondary" style="min-height:40px;padding:8px 18px;">상품등록</a>
+		<%
+				}
+		%>
+			<span class="nav-user"><%= _loginId %>님</span>
+			<a href="<%= ctx %>/pages/logout.jsp" class="btn btn-secondary" style="min-height:40px;padding:8px 18px;">로그아웃</a>
+		<%
+			} else {
+		%>
+			<a href="<%= ctx %>/pages/login.jsp" class="btn btn-secondary" style="min-height:40px;padding:8px 18px;">로그인</a>
+		<%
+			}
+		%>
 		</div>
 	</div>
 </header>
