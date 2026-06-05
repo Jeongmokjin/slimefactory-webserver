@@ -1,5 +1,3 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%
-	// 메인 페이지 = 상품 목록 페이지. 앱 루트 접속 시 목록으로 이동.
-	response.sendRedirect(request.getContextPath() + "/pages/main.jsp");
-%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%-- 앱 진입점: 컨트롤러 /main 으로 forward (시작페이지) --%>
+<jsp:forward page="/main" />
