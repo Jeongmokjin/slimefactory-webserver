@@ -1,0 +1,61 @@
+/* =====================================================================
+   슬라임 팩토리 — 커스텀 오버라이드 (Bootstrap 5 위에 최소한만 얹는다)
+   디자인 시스템: 기능 우선 · 박스형 · 표준 컴포넌트 (장식 최소화)
+   * 컬러/타이포/간격/버튼/카드/테이블 등은 Bootstrap 기본을 그대로 사용.
+   * 이 파일은 Bootstrap 으로 표현 안 되는 소수의 레이아웃 보정만 담는다.
+   ===================================================================== */
+
+/* 상품 카드 썸네일: 4:3 고정 비율, 잘라서 채우기(목록 정렬감) */
+.product-thumb {
+	aspect-ratio: 4 / 3;
+	object-fit: cover;
+	width: 100%;
+	background-color: var(--bs-gray-100);
+}
+
+/* 이미지 없음 플레이스홀더(박스형, 회색면 + 안내 텍스트) */
+.no-image {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	aspect-ratio: 4 / 3;
+	width: 100%;
+	background-color: var(--bs-gray-100);
+	color: var(--bs-gray-500);
+	font-size: .875rem;
+	border-bottom: 1px solid var(--bs-border-color);
+}
+
+/* 상품 상세의 큰 이미지 영역 */
+.detail-image {
+	aspect-ratio: 1 / 1;
+	object-fit: cover;
+	width: 100%;
+	border: 1px solid var(--bs-border-color);
+	background-color: var(--bs-gray-100);
+}
+.detail-image.no-image {
+	aspect-ratio: 1 / 1;
+	font-size: 1rem;
+}
+
+/* 카드 전체를 링크로 쓸 때 텍스트 색/밑줄 정리 */
+a.card-link-reset,
+a.card-link-reset:hover {
+	color: inherit;
+	text-decoration: none;
+}
+
+/* 푸터가 항상 화면 하단에 붙도록(콘텐츠가 짧아도) */
+html, body { height: 100%; }
+body { display: flex; flex-direction: column; min-height: 100vh; }
+main { flex: 1 0 auto; }
+
+/* 카드 호버 살짝 떠오름(디자인 시스템 8장: shadow-sm → shadow, 0.15s) */
+.card.hover-raise {
+	transition: box-shadow .15s ease-out, transform .15s ease-out;
+}
+.card.hover-raise:hover {
+	box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15) !important;
+	transform: translateY(-2px);
+}
