@@ -12,11 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import util.PasswordUtil;
 
-/**
- * 회원 정보수정 · 탈퇴. (AuthFilter 로 로그인 보호)
- * POST action=update : 정보수정(+선택적 비밀번호 변경)
- * POST action=withdraw : 탈퇴(Soft delete) → 세션 무효화
- */
+// 정보 수정 서블렛
 @WebServlet("/member/edit")
 public class EditMemberServlet extends HttpServlet {
 

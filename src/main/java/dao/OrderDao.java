@@ -12,17 +12,12 @@ import dto.Order;
 import dto.OrderItem;
 import util.DBUtil;
 
-/**
- * 주문(order/order_item) DAO. (order 는 예약어 → 백틱 사용)
- *
- * <p>주문 생성 메서드는 외부에서 넘긴 Connection 을 사용한다(주문 트랜잭션 공유).
- * 조회 메서드는 독립적으로 Connection 을 열고 닫는다.</p>
- */
+
 public class OrderDao {
 
-	// ===== 트랜잭션 전용(외부 Connection) =====
+	// 트랜잭션 전용(외부 Connection)
 
-	/** 주문 헤더 insert. 생성된 order_id 반환. */
+	// 주문 헤더 insert, 생성된 order_id 반환
 	public long insertOrder(Connection conn, Order o) throws SQLException {
 		String sql = "INSERT INTO `order` (user_id, status, total_price, address) "
 				+ "VALUES (?, 'ORDERED', ?, ?)";
@@ -40,7 +35,7 @@ public class OrderDao {
 		throw new SQLException("order_id 생성 실패");
 	}
 
-	/** 주문 상세 insert. price 에는 주문 시점 단가 스냅샷을 저장한다. */
+	// 주문 상세 insert, price 에는 주문 시점 단가 스냅샷을 저장
 	public void insertOrderItem(Connection conn, long orderId, OrderItem item) throws SQLException {
 		String sql = "INSERT INTO order_item (order_id, product_id, quantity, price) "
 				+ "VALUES (?, ?, ?, ?)";
@@ -53,9 +48,7 @@ public class OrderDao {
 		}
 	}
 
-	// ===== 조회(독립 Connection) =====
-
-	/** 사용자의 주문 목록(최신순). */
+	// 사용자의 주문 목록(최신순)
 	public List<Order> findByUser(String userId) {
 		String sql = "SELECT order_id, user_id, status, total_price, address, order_date "
 				+ "FROM `order` WHERE user_id = ? ORDER BY order_date DESC, order_id DESC";
@@ -74,7 +67,7 @@ public class OrderDao {
 		return list;
 	}
 
-	/** 주문 단건 조회(본인 확인 포함). 없으면 null. */
+	// 주문 단건 조회(본인 확인 포함), 없으면 null
 	public Order findById(long orderId, String userId) {
 		String sql = "SELECT order_id, user_id, status, total_price, address, order_date "
 				+ "FROM `order` WHERE order_id = ? AND user_id = ?";
@@ -93,7 +86,7 @@ public class OrderDao {
 		return null;
 	}
 
-	/** 특정 주문의 상세 항목(상품명 조인). */
+	// 특정 주문의 상세 항목(상품명 조인)
 	public List<OrderItem> findItems(long orderId) {
 		String sql = "SELECT oi.order_item_id, oi.order_id, oi.product_id, oi.quantity, oi.price, "
 				+ "       p.name AS product_name "

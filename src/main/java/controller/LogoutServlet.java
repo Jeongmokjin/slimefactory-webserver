@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-/** 로그아웃. 세션 무효화 후 메인으로. */
+// 로그아웃 서블렛, 세션 지우고 메인으로
 @WebServlet("/member/logout")
 public class LogoutServlet extends HttpServlet {
 

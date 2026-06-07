@@ -3,33 +3,22 @@ package dto;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-/**
- * 장바구니 항목 DTO — DB {@code cart} 테이블과 1:1 매핑.
- *
- * <pre>
- * cart_id BIGINT PK / user_id VARCHAR(100) FK / product_id BIGINT FK
- * quantity INT / created_at DATETIME
- * UNIQUE(user_id, product_id) — 같은 상품 재담기 시 수량 증가
- * </pre>
- *
- * <p>장바구니 화면 표시를 위해 조인된 상품 정보(name/price/imageUrl/stock)를
- * 함께 담는 보조 필드를 둔다. (테이블에는 없는 표시용 값)</p>
- */
+// 장바구니에 담은 품목 하나를 의미
 public class Cart implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private long cartId;          // cart_id
-	private String userId;        // user_id
-	private long productId;       // product_id
-	private int quantity;         // quantity
-	private Timestamp createdAt;  // created_at
+	private long cartId;          // 카트 id
+	private String userId;        // 사용자 id, 이걸로 한 사용자가 담은 품목을 구별해서 모두 보여줌
+	private long productId;       // 담은 제품 id
+	private int quantity;         // 수량
+	private Timestamp createdAt;  // 장바구니 생성 시간
 
 	// ----- 표시용(조인) 필드: product 테이블에서 가져온 값 -----
-	private String productName;   // 상품명
-	private int price;            // 단가
-	private String imageUrl;      // 이미지
-	private int stock;            // 현재 재고
+	private String productName;   // 상품 이름
+	private int price;            // 가격
+	private String imageUrl;      // 이미지 url
+	private int stock;            // 재고
 
 	public Cart() {
 	}
@@ -106,7 +95,7 @@ public class Cart implements Serializable {
 		this.stock = stock;
 	}
 
-	/** 항목 소계(단가 × 수량). */
+	// 상품당 총 가격 (가격 × 수량)
 	public int getSubtotal() {
 		return price * quantity;
 	}

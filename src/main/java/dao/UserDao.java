@@ -8,13 +8,10 @@ import java.sql.SQLException;
 import dto.User;
 import util.DBUtil;
 
-/**
- * 회원(user) DAO. 모든 활성 회원 조회는 {@code deleted_at IS NULL} 조건을 적용한다.
- * 탈퇴는 실제 DELETE 가 아닌 Soft delete(UPDATE deleted_at = NOW()) 로 처리한다.
- */
+
 public class UserDao {
 
-	/** 활성 회원 단건 조회. 없으면 null. */
+	// 활성 회원 단건 조회, 없으면 null.
 	public User findById(String userId) {
 		String sql = "SELECT user_id, name, password, email, phone, role, created_at, deleted_at "
 				+ "FROM `user` WHERE user_id = ? AND deleted_at IS NULL";
@@ -32,7 +29,7 @@ public class UserDao {
 		return null;
 	}
 
-	/** 활성 회원 ID 존재 여부(가입 중복확인용). */
+	// 활성 회원 ID 중복 확인
 	public boolean existsById(String userId) {
 		String sql = "SELECT 1 FROM `user` WHERE user_id = ? AND deleted_at IS NULL";
 		try (Connection conn = DBUtil.getConnection();
@@ -46,7 +43,7 @@ public class UserDao {
 		}
 	}
 
-	/** 신규 회원 등록. 비밀번호는 호출 전 해시되어 있어야 한다. */
+	// 신규 회원 등록
 	public void insert(User u) {
 		String sql = "INSERT INTO `user` (user_id, name, password, email, phone, role) "
 				+ "VALUES (?, ?, ?, ?, ?, ?)";
@@ -64,7 +61,7 @@ public class UserDao {
 		}
 	}
 
-	/** 회원 정보 수정(이름/이메일/연락처). */
+	// 회원 정보 수정(이름/이메일/연락처)
 	public void updateProfile(User u) {
 		String sql = "UPDATE `user` SET name = ?, email = ?, phone = ? "
 				+ "WHERE user_id = ? AND deleted_at IS NULL";
@@ -80,7 +77,7 @@ public class UserDao {
 		}
 	}
 
-	/** 비밀번호 변경(이미 해시된 값). */
+	// 비밀번호 변경
 	public void updatePassword(String userId, String hashedPassword) {
 		String sql = "UPDATE `user` SET password = ? WHERE user_id = ? AND deleted_at IS NULL";
 		try (Connection conn = DBUtil.getConnection();
@@ -93,7 +90,7 @@ public class UserDao {
 		}
 	}
 
-	/** 회원 탈퇴 = Soft delete (실제 DELETE 금지). */
+	// 회원 탈퇴(Soft delete)
 	public void softDelete(String userId) {
 		String sql = "UPDATE `user` SET deleted_at = NOW() "
 				+ "WHERE user_id = ? AND deleted_at IS NULL";
@@ -106,7 +103,7 @@ public class UserDao {
 		}
 	}
 
-	/** ResultSet → User 매핑. */
+	// 유저 조회 결과 데이터 가공
 	private User map(ResultSet rs) throws SQLException {
 		User u = new User();
 		u.setUserId(rs.getString("user_id"));

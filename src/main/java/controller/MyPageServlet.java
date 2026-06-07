@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/** 내 정보 + 주문내역. (AuthFilter 로 로그인 보호) */
+// 내 정보 + 주문내역
 @WebServlet("/mypage")
 public class MyPageServlet extends HttpServlet {
 

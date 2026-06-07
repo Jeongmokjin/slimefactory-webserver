@@ -13,17 +13,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
-/**
- * 인증/인가 필터.
- *
- * <ul>
- *   <li><b>/admin/*</b> — 로그인 + ADMIN 권한 필요. (미인증→로그인, 권한부족→403)</li>
- *   <li><b>/mypage, /member/edit, /member/logout, /cart, /cart/*, /order/*</b>
- *       — 로그인(USER) 필요. (미인증→로그인 페이지로 리다이렉트)</li>
- * </ul>
- *
- * <p>로그인 사용자는 세션 속성 {@code loginUser}(User) 로 식별한다.</p>
- */
+// 권한 필요한 페이지 권한 필터링
 @WebFilter(filterName = "AuthFilter", urlPatterns = {
 		"/admin/*",
 		"/mypage",

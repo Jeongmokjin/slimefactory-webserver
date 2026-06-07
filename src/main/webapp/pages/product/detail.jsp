@@ -17,7 +17,7 @@
 	</nav>
 
 	<div class="row g-4">
-		<!-- 좌측: 이미지 -->
+		<!-- 이미지 -->
 		<div class="col-12 col-md-6">
 			<c:choose>
 				<c:when test="${not empty product.imageUrl}">
@@ -30,7 +30,7 @@
 			</c:choose>
 		</div>
 
-		<!-- 우측: 정보 패널 -->
+		<!-- 정보 패널 -->
 		<div class="col-12 col-md-6">
 			<span class="badge text-bg-secondary mb-2">SLIME</span>
 			<h1 class="h2 fw-bold"><c:out value="${product.name}" /></h1>

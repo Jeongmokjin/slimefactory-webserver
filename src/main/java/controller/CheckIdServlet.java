@@ -9,9 +9,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * 아이디 중복확인(AJAX). 응답 본문: "available" 또는 "taken".
- */
+// 아이디 중복 확인 서블렛, 사용 가능: available, 사용중: taken 
 @WebServlet("/member/check-id")
 public class CheckIdServlet extends HttpServlet {
 

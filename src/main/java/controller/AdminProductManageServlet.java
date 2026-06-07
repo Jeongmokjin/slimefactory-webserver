@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/** (ADMIN) 상품 관리 목록 — 등록/수정/삭제 진입점. (AuthFilter /admin/* 보호) */
+// 상품 관리 서블렛
 @WebServlet("/admin/product/manage")
 public class AdminProductManageServlet extends HttpServlet {
 

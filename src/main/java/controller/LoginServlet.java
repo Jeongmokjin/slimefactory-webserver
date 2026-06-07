@@ -12,10 +12,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import util.PasswordUtil;
 
-/**
- * 로그인. GET=폼, POST=인증 후 세션 생성.
- * 세션 속성 {@code loginUser}(User) 로 로그인 상태를 유지한다.
- */
+// 로그인 서블렛
 @WebServlet("/member/login")
 public class LoginServlet extends HttpServlet {
 
@@ -44,17 +41,16 @@ public class LoginServlet extends HttpServlet {
 			return;
 		}
 
-		// 세션 고정 공격 방지: 로그인 시 기존 세션 무효화 후 새 세션 발급
+		// 로그인 시 기존 세션 무효화 후 새 세션 발급
 		HttpSession old = req.getSession(false);
 		if (old != null) {
 			old.invalidate();
 		}
 		HttpSession session = req.getSession(true);
-		user.setPassword(null); // 세션에는 해시도 보관하지 않음
+		user.setPassword(null); // 세션에는 비번 보관 X
 		session.setAttribute("loginUser", user);
 
-		// 원래 가려던 곳(redirect)으로, 없으면 메인으로.
-		// 오픈 리다이렉트 방지: 같은 앱 내부 경로(컨텍스트로 시작)만 허용한다.
+		// 이전에 가려던 곳으로 가거나 메인으로
 		String safe = req.getContextPath() + "/main";
 		if (redirect != null && redirect.startsWith(req.getContextPath() + "/")) {
 			safe = redirect;

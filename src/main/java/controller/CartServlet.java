@@ -12,10 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * 장바구니 조회 · 수량변경 · 삭제. (AuthFilter 로 로그인 보호)
- * GET=조회, POST action=update|remove
- */
+// 장바구니 서블렛, GET: 장바구니 목록 얻기, POST: 수량 변경 or 삭제
 @WebServlet("/cart")
 public class CartServlet extends HttpServlet {
 

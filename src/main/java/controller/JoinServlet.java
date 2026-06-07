@@ -12,10 +12,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import util.PasswordUtil;
 
-/**
- * 회원가입. GET=폼, POST=유효성 검사 후 등록.
- * 유효성: 필수값 · 이메일 형식 · ID 중복확인. 비밀번호는 해시 저장.
- */
+// 회원가입 서블렛, GET: 회원가입 폼, POST: 회원가입 값 검사
 @WebServlet("/member/join")
 public class JoinServlet extends HttpServlet {
 
@@ -55,7 +52,7 @@ public class JoinServlet extends HttpServlet {
 		User u = new User();
 		u.setUserId(userId);
 		u.setName(name);
-		u.setPassword(PasswordUtil.hash(password)); // 평문 저장 금지 → 해시
+		u.setPassword(PasswordUtil.hash(password)); // 해시 암호화
 		u.setEmail(email);
 		u.setPhone(phone);
 		u.setRole("USER");

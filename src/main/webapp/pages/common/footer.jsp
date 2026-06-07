@@ -1,7 +1,6 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
-<%-- 공통 바닥글: 다크 밴드 + 접속 시간 출력 (시작페이지 모듈화 요구사항) --%>
 <jsp:useBean id="now" class="java.util.Date" />
 <c:set var="ctx" value="${pageContext.request.contextPath}" />
 
@@ -39,7 +38,7 @@
 		<hr class="border-secondary my-3">
 
 		<div class="d-flex flex-wrap justify-content-between small text-secondary">
-			<span>© 2025 Slime Factory. 학습용 프로젝트.</span>
+			<span>© 2026 Slime Factory. 학습용 프로젝트.</span>
 			<span>접속 시간: <fmt:formatDate value="${now}" pattern="yyyy-MM-dd (E) HH:mm:ss" /></span>
 		</div>
 	</div>

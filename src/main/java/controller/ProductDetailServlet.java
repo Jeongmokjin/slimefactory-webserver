@@ -11,10 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * 상품 상세. id 파라미터가 없거나 존재하지 않는 상품이면
- * {@link ProductNotFoundException} → web.xml 매핑으로 상품없음 페이지로 forward.
- */
+// 상품 단일 조회, 없으면 에러 페이지
 @WebServlet("/product")
 public class ProductDetailServlet extends HttpServlet {
 

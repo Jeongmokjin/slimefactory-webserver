@@ -11,10 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * 시작 페이지. 최신 상품을 함께 실어 main.jsp 로 forward 한다.
- * (접속 시간은 footer.jsp 에서 출력)
- */
+// 메인 페이지 서블렛, 상품 목록을 받아서 넘김
 @WebServlet("/main")
 public class MainServlet extends HttpServlet {
 

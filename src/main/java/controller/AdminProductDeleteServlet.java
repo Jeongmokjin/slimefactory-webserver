@@ -8,7 +8,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/** (ADMIN) 상품 삭제 → 관리 목록으로. (AuthFilter /admin/* 보호) */
+// 상품 삭제 서블렛
 @WebServlet("/admin/product/delete")
 public class AdminProductDeleteServlet extends HttpServlet {
 
@@ -24,7 +24,7 @@ public class AdminProductDeleteServlet extends HttpServlet {
 		} catch (NumberFormatException e) {
 			resp.sendRedirect(req.getContextPath() + "/admin/product/manage");
 		} catch (RuntimeException e) {
-			// 주문 이력(FK RESTRICT) 등으로 삭제 불가
+			// 주문 이력 등으로 삭제 불가
 			resp.sendRedirect(req.getContextPath() + "/admin/product/manage?error=inuse");
 		}
 	}
