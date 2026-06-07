@@ -10,13 +10,9 @@ import java.util.List;
 import dto.Cart;
 import util.DBUtil;
 
-/**
- * 장바구니(cart) DAO. 로그인 사용자의 장바구니를 DB에 영속화한다.
- * 같은 상품 재담기 시 UNIQUE(user_id, product_id) 를 활용해 수량을 증가시킨다.
- */
 public class CartDao {
 
-	/** 사용자의 장바구니 목록(상품 정보 조인). */
+	// 사용자의 장바구니 목록(상품 정보 조인)
 	public List<Cart> findByUser(String userId) {
 		String sql = "SELECT c.cart_id, c.user_id, c.product_id, c.quantity, c.created_at, "
 				+ "       p.name, p.price, p.image_url, p.stock "
@@ -47,10 +43,9 @@ public class CartDao {
 		return list;
 	}
 
-	/**
-	 * 장바구니 담기. 같은 상품이 이미 있으면 수량을 더한다.
-	 * (UNIQUE 제약 + ON DUPLICATE KEY UPDATE)
-	 */
+	// 장바구니 목록 추가 + 담기
+	//UNIQUE 제약 조건 때문에 중복 에러(DUPLICATE KEY)가 터지면, 멈추지 말고(ON)
+	//기존에 있던 그 줄의 수량(quantity)에다가 방금 내가 새로 담은 수량만큼 더하기(+)해서 수정(UPDATE)
 	public void addOrIncrease(String userId, long productId, int quantity) {
 		String sql = "INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?) "
 				+ "ON DUPLICATE KEY UPDATE quantity = quantity + VALUES(quantity)";
@@ -65,7 +60,7 @@ public class CartDao {
 		}
 	}
 
-	/** 수량 변경(1 이상). */
+	// 수량 변경(1 이상)
 	public void updateQuantity(String userId, long productId, int quantity) {
 		String sql = "UPDATE cart SET quantity = ? WHERE user_id = ? AND product_id = ?";
 		try (Connection conn = DBUtil.getConnection();
@@ -79,7 +74,7 @@ public class CartDao {
 		}
 	}
 
-	/** 장바구니 항목 1건 삭제. */
+	// 장바구니 항목 1건 삭제. 
 	public void delete(String userId, long productId) {
 		String sql = "DELETE FROM cart WHERE user_id = ? AND product_id = ?";
 		try (Connection conn = DBUtil.getConnection();
@@ -92,7 +87,7 @@ public class CartDao {
 		}
 	}
 
-	/** 사용자의 장바구니 비우기(주문 완료 후/탈퇴 시). 외부 트랜잭션 Connection 사용. */
+	// 사용자의 장바구니 비우기(트랜젝션 적용), 주문 완료되면 비우는 상황
 	public void clear(Connection conn, String userId) throws SQLException {
 		String sql = "DELETE FROM cart WHERE user_id = ?";
 		try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -101,7 +96,7 @@ public class CartDao {
 		}
 	}
 
-	/** 사용자의 장바구니 비우기(독립 실행). */
+	// 사용자의 장바구니 비우기(독립 실행)
 	public void clear(String userId) {
 		try (Connection conn = DBUtil.getConnection()) {
 			clear(conn, userId);

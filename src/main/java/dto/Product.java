@@ -3,25 +3,18 @@ package dto;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-/**
- * 상품 DTO — DB {@code product} 테이블과 1:1 매핑.
- *
- * <pre>
- * product_id BIGINT PK / name VARCHAR(50) / price INT / description TEXT
- * stock INT / image_url VARCHAR(1000) / created_at DATETIME
- * </pre>
- */
+
 public class Product implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private long productId;       // product_id (PK, AUTO_INCREMENT)
-	private String name;          // name
-	private int price;            // price
-	private String description;   // description (nullable)
-	private int stock;            // stock
-	private String imageUrl;      // image_url (nullable)
-	private Timestamp createdAt;  // created_at
+	private long productId;       // 상품 id
+	private String name;          // 이름
+	private int price;            // 가격
+	private String description;   // 설명
+	private int stock;            // 재고
+	private String imageUrl;      // 이미지 url
+	private Timestamp createdAt;  // 생성시간
 
 	public Product() {
 	}

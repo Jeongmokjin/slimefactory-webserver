@@ -14,13 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * (ADMIN) 상품 저장 — 등록/수정 + 이미지 업로드. (AuthFilter /admin/* 보호)
- *
- * <p>cos {@link MultipartRequest} 로 multipart/form-data 를 파싱한다.
- * 업로드 이미지는 {@code webapp/resources/uploads} 아래에 저장하고,
- * DB 에는 상대경로(resources/uploads/파일명)를 image_url 로 저장한다.</p>
- */
+// 상품 병경, 추가 저장 서블렛
 @WebServlet("/admin/product/save")
 public class AdminProductSaveServlet extends HttpServlet {
 

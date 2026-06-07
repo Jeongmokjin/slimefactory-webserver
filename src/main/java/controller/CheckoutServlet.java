@@ -12,7 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/** 주문서 작성. 장바구니 내용과 총액을 보여준다. (AuthFilter 보호) */
+// 주문서 작성, 장바구니 내용과 총액을 보여줌
 @WebServlet("/order/checkout")
 public class CheckoutServlet extends HttpServlet {
 

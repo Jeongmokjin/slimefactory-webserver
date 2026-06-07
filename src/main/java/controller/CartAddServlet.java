@@ -12,10 +12,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * 장바구니 담기. (AuthFilter 로 로그인 보호 — 미로그인 시 로그인 후 복귀)
- * 같은 상품 재담기 시 CartDao 가 수량을 증가시킨다.
- */
+// 장바구니 담기 서블렛, handle로 장바구니를 추가하여 GET와 POST 모두 장바구니 추가 기능
 @WebServlet("/cart/add")
 public class CartAddServlet extends HttpServlet {
 
@@ -32,7 +29,6 @@ public class CartAddServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-		// 상품 상세/목록에서 링크(GET)로도 담을 수 있도록 허용
 		handle(req, resp);
 	}
 

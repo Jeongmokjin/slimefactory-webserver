@@ -11,7 +11,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/** 상품 목록. */
+// 상품 목록, 상품 목록 받아와서 전달
 @WebServlet("/products")
 public class ProductListServlet extends HttpServlet {
 

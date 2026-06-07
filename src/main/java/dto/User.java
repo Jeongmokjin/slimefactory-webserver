@@ -3,26 +3,19 @@ package dto;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-/**
- * 회원 DTO — DB {@code user} 테이블과 1:1 매핑.
- *
- * <pre>
- * user_id VARCHAR(100) PK / name / password(해시) / email / phone
- * role ENUM('USER','ADMIN') / created_at / deleted_at(NULL=활성)
- * </pre>
- */
+
 public class User implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private String userId;        // user_id (PK, 로그인 ID)
-	private String name;          // name
-	private String password;      // password (SHA-256 해시 저장)
-	private String email;         // email
-	private String phone;         // phone
-	private String role;          // role ('USER' | 'ADMIN')
-	private Timestamp createdAt;  // created_at
-	private Timestamp deletedAt;  // deleted_at (NULL = 활성, 값 = 탈퇴)
+	private String userId;        // 유저 id
+	private String name;          // 이름
+	private String password;      // 비번(해시된 값)
+	private String email;         // 이메일
+	private String phone;         // 전번
+	private String role;          // 권한
+	private Timestamp createdAt;  // 가입 시점
+	private Timestamp deletedAt;  // 탈퇴 시점(NULL = 아직 미탈톼)
 
 	public User() {
 	}
@@ -91,7 +84,6 @@ public class User implements Serializable {
 		this.deletedAt = deletedAt;
 	}
 
-	/** ADMIN 권한 여부 편의 메서드. */
 	public boolean isAdmin() {
 		return "ADMIN".equals(role);
 	}

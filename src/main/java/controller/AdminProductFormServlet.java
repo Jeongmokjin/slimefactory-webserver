@@ -10,10 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-/**
- * (ADMIN) 상품 등록/수정 폼. id 파라미터가 있으면 수정, 없으면 신규 등록 폼.
- * (AuthFilter /admin/* 보호)
- */
+// 상품 수정, 추가 폼 서블렛
 @WebServlet("/admin/product/form")
 public class AdminProductFormServlet extends HttpServlet {
 

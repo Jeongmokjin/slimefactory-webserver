@@ -20,10 +20,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import service.OrderService;
 
-/**
- * 주문 확정. OrderService 트랜잭션으로 order/order_item insert + 재고차감.
- * 완료 후 최근 주문번호를 쿠키에 기록하고 complete.jsp 로 forward.
- */
+// 주문 서블렛
 @WebServlet("/order/place")
 public class PlaceOrderServlet extends HttpServlet {
 

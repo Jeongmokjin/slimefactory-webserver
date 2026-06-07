@@ -2,25 +2,17 @@ package dto;
 
 import java.io.Serializable;
 
-/**
- * 주문 상세 DTO — DB {@code order_item} 테이블과 1:1 매핑.
- *
- * <pre>
- * order_item_id BIGINT PK / order_id FK / product_id FK
- * quantity INT / price INT (주문 시점 가격 스냅샷)
- * </pre>
- */
 public class OrderItem implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	private long orderItemId;     // order_item_id
-	private long orderId;         // order_id
-	private long productId;       // product_id
-	private int quantity;         // quantity
-	private int price;            // price (주문 시점 단가 스냅샷)
+	private long orderItemId;     // 주문 상세 품목 id
+	private long orderId;         // 주문 id
+	private long productId;       // 상품 id
+	private int quantity;         // 주문 수량
+	private int price;            // 가격 (주문 시점 가격)
 
-	// ----- 표시용(조인) 필드 -----
+	// 표시용(조인) 필드 
 	private String productName;   // 상품명
 
 	public OrderItem() {
@@ -80,7 +72,7 @@ public class OrderItem implements Serializable {
 		this.productName = productName;
 	}
 
-	/** 항목 소계(스냅샷 단가 × 수량). */
+	// 항목 소계(주문시 가격 × 수량)
 	public int getSubtotal() {
 		return price * quantity;
 	}

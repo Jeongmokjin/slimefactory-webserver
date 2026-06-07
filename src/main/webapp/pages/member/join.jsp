@@ -67,7 +67,7 @@
 		var id = document.getElementById('userId').value.trim();
 		var msg = document.getElementById('idMsg');
 		if (!id) { msg.textContent = '아이디를 입력하세요.'; msg.className = 'form-text text-danger'; return; }
-		fetch('${ctx}/member/check-id?userId=' + encodeURIComponent(id))
+		fetch('${ctx}/member/check-id?userId=' + encodeURIComponent(id)) // 아이디 체크 서블렛에 요청 날림
 			.then(function (r) { return r.text(); })
 			.then(function (t) {
 				if (t === 'available') { msg.textContent = '사용 가능한 아이디입니다.'; msg.className = 'form-text text-success'; }

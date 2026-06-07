@@ -20,7 +20,7 @@
 
 			<div class="card shadow-sm">
 				<div class="card-body">
-					<%-- 이미지 업로드를 위해 multipart/form-data --%>
+					<!-- 이미지 업로드를 위해 multipart/form-data -->
 					<form action="${ctx}/admin/product/save" method="post" enctype="multipart/form-data">
 						<c:if test="${edit}">
 							<input type="hidden" name="productId" value="${product.productId}">

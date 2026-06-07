@@ -1,9 +1,7 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <%@ taglib prefix="fmt" uri="jakarta.tags.fmt" %>
-<%-- 공통 머리글: 다국어 번들 + Bootstrap 네비게이션 + 로그인 상태 --%>
 
-<%-- 언어 선택(?lang=ko|en)을 세션에 저장. 기본 ko --%>
 <c:if test="${not empty param.lang}">
 	<c:set var="lang" value="${param.lang}" scope="session" />
 </c:if>
@@ -13,7 +11,7 @@
 <fmt:setLocale value="${sessionScope.lang}" />
 <fmt:setBundle basename="messages" />
 
-<c:set var="ctx" value="${pageContext.request.contextPath}" />
+<c:set var="ctx" value="${pageContext.request.contextPath}" /> <!-- 경로 생략용 ctx 생성 -->
 <c:set var="loginUser" value="${sessionScope.loginUser}" />
 <!DOCTYPE html>
 <html lang="${sessionScope.lang}">
@@ -26,7 +24,6 @@
 </head>
 <body class="bg-white">
 
-<%-- 헤더/네비게이션: 하단 1px 보더, 중앙 nav-pills, 우측 다국어·장바구니·계정 --%>
 <header class="border-bottom bg-white">
 	<nav class="navbar navbar-expand-lg">
 		<div class="container">
@@ -53,7 +50,6 @@
 			</ul>
 
 			<div class="d-flex align-items-center gap-2">
-				<%-- 다국어 스위치: 활성 언어 primary, 비활성 muted --%>
 				<div class="btn-group btn-group-sm" role="group" aria-label="language">
 					<a href="?lang=ko" class="btn ${sessionScope.lang == 'ko' ? 'btn-primary' : 'btn-outline-secondary'}">한</a>
 					<a href="?lang=en" class="btn ${sessionScope.lang == 'en' ? 'btn-primary' : 'btn-outline-secondary'}">EN</a>

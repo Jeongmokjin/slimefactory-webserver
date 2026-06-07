@@ -8,6 +8,11 @@
 
 <main class="container py-4">
 
+	<!-- 탈퇴 완료 -->
+	<c:if test="${param.withdraw == '1'}">
+		<div class="alert alert-success">회원 탈퇴가 완료되었습니다. 이용해 주셔서 감사합니다.</div>
+	</c:if>
+
 	<!-- 점보트론(히어로) -->
 	<section class="p-5 mb-4 bg-light border rounded-3">
 		<div class="container-fluid py-2">
